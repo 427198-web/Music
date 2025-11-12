@@ -1,0 +1,12 @@
+<!doctype html> 
+<html> 
+<head>
+<meta charset="utf-8">
+<title>Music</title></head>
+ <body> 
+<h1>Playlist</h1>
+ <audio id="player" controls></audio>
+ <ul id="playlist"></ul>
+ <script> const tracks = [ { title: "Evil Disciples Vs The USA", file: "tracks/evil-disciples-vs-the-usa.mp3" }, { title: "I Don't Hit My Girlfriend", file: "tracks/i-dont-hit-my-girlfriend.mp3" }, // add other tracks... ]; const player = document.getElementById('player'); const list = document.getElementById('playlist'); tracks.forEach((t, i) => { const li = document.createElement('li'); const a = document.createElement('a'); a.href = "#"; a.textContent = t.title; a.onclick = (e) => { e.preventDefault(); player.src = t.file; player.play(); }; li.appendChild(a); list.appendChild(li); }); // optional: advance to next track player.addEventListener('ended', () => { const idx = tracks.findIndex(t => t.file === player.src.split('/').pop()); const next = (idx + 1) % tracks.length; player.src = tracks[next].file; player.play(); }); </script>
+</body>
+ </html>
